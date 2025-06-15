@@ -1,1 +1,6 @@
 
+-- START OF OBFUSCATED CODE
+loadstring((function(b)local h=b:gsub(".",function(c)return string.format("%02X",string.byte(c))end) return loadstring((function(d)local e,f,g="","",{};local hex2str=function(x)return(x:gsub("..",function(cc)return string.char(tonumber(cc,16))end))end local b64="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/" local function decode64(s)local r="" local p,o,t=0,0,0 for i=1,#s,4 do local a= b64:find(s:sub(i,i))-1 local b= b64:find(s:sub(i+1,i+1))-1 local c= b64:find(s:sub(i+2,i+2))-1 local d= b64:find(s:sub(i+3,i+3))-1 local n1=(a<<2)|(b>>4) local n2=((b&15)<<4)|(c>>2) local n3=((c&3)<<6)|d r=r..string.char(n1) if s:sub(i+2,i+2)~="=" then r=r..string.char(n2) end if s:sub(i+3,i+3)~="=" then r=r..string.char(n3) end end return r end; local enc=hex2str(decode64(d)) return enc end)) end)([[
+48656C6C6F20776F726C642C207468697320697320796F757220636F6465206F626675736361746564212E2E2E
+]])
+-- END OF OBFUSCATED CODE
