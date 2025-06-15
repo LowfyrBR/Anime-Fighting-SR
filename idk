@@ -1,0 +1,92 @@
+-- Load DrRay Library
+local DrRayLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/AZYsGithub/DrRay-UI-Library/main/DrRay.lua"))()
+local window = DrRayLibrary:Load("DrRay", "Default")
+local tab = DrRayLibrary.newTab("AutoFarm", "ImageIdHere") -- Opcional, substitua ImageIdHere
+
+-- Control variables
+local isAutoClickEnabled = false
+local isAutoDurabilityEnabled = false
+local isAutoChakraEnabled = false
+local isAutoSwordEnabled = false
+local isAutoAgilityEnabled = false
+
+-- Auto Click
+task.spawn(function()
+    while true do
+        if isAutoClickEnabled then
+            local args = { [1] = "Click" }
+            game:GetService("ReplicatedStorage").RemoteEvents.StrengthTrainingEvent:FireServer(unpack(args))
+        end
+        task.wait(0.1)
+    end
+end)
+
+-- Auto Durability
+task.spawn(function()
+    while true do
+        if isAutoDurabilityEnabled then
+            local args = { [1] = "Click" }
+            game:GetService("ReplicatedStorage").RemoteEvents.DurabilityTrainingEvent:FireServer(unpack(args))
+        end
+        task.wait(0.1)
+    end
+end)
+
+-- Auto Chakra
+task.spawn(function()
+    while true do
+        if isAutoChakraEnabled then
+            local args = { [1] = "Click" }
+            game:GetService("ReplicatedStorage").RemoteEvents.ChakraTrainingEvent:FireServer(unpack(args))
+        end
+        task.wait(0.1)
+    end
+end)
+
+-- Auto Sword
+task.spawn(function()
+    while true do
+        if isAutoSwordEnabled then
+            local args = { [1] = "Click" }
+            game:GetService("ReplicatedStorage").RemoteEvents.SwordTrainingEvent:FireServer(unpack(args))
+        end
+        task.wait(0.1)
+    end
+end)
+
+-- Auto Agility (com pulo automático)
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+task.spawn(function()
+    while true do
+        if isAutoAgilityEnabled then
+            humanoid.Jump = true -- faz o personagem pular
+            local args = { [1] = true }
+            game:GetService("ReplicatedStorage").RemoteEvents.AgilityTrainingEvent:FireServer(unpack(args))
+        end
+        task.wait(0.1)
+    end
+end)
+
+-- UI Toggles
+tab.newToggle("Auto Click", "Enable or disable strength training", false, function(state)
+    isAutoClickEnabled = state
+end)
+
+tab.newToggle("Auto Durability", "Enable or disable durability training", false, function(state)
+    isAutoDurabilityEnabled = state
+end)
+
+tab.newToggle("Auto Chakra", "Enable or disable chakra training", false, function(state)
+    isAutoChakraEnabled = state
+end)
+
+tab.newToggle("Auto Sword", "Enable or disable sword training", false, function(state)
+    isAutoSwordEnabled = state
+end)
+
+tab.newToggle("Auto Agility", "Enable or disable agility training (auto jump)", false, function(state)
+    isAutoAgilityEnabled = state
+end)
